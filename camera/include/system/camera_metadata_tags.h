@@ -509,6 +509,7 @@ typedef enum camera_metadata_tag {
     ANDROID_INFO_DEVICE_STATE_ORIENTATIONS,           // int64[]      | ndk_public   | HIDL v3.7
     ANDROID_INFO_SESSION_CONFIGURATION_QUERY_VERSION, // enum         | fwk_java_public
     ANDROID_INFO_DEVICE_ID,                           // int32        | fwk_only
+    ANDROID_INFO_DEVICE_TYPE,                         // enum         | public       | HIDL v3.12
     ANDROID_INFO_END,
 
     ANDROID_BLACK_LEVEL_LOCK =                        // enum         | public       | HIDL v3.2
@@ -1404,6 +1405,14 @@ typedef enum camera_metadata_enum_android_info_session_configuration_query_versi
                                                                       = 35,
     ANDROID_INFO_SESSION_CONFIGURATION_QUERY_VERSION_BAKLAVA         = 36,
 } camera_metadata_enum_android_info_session_configuration_query_version_t;
+
+// ANDROID_INFO_DEVICE_TYPE
+typedef enum camera_metadata_enum_android_info_device_type {
+    ANDROID_INFO_DEVICE_TYPE_BUILT_IN                               , // HIDL v3.12
+    ANDROID_INFO_DEVICE_TYPE_EXTERNAL                               , // HIDL v3.12
+    ANDROID_INFO_DEVICE_TYPE_VIRTUAL                                , // HIDL v3.12
+    ANDROID_INFO_DEVICE_TYPE_UNKNOWN                                , // HIDL v3.12
+} camera_metadata_enum_android_info_device_type_t;
 
 
 // ANDROID_BLACK_LEVEL_LOCK
