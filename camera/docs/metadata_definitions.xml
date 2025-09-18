@@ -4168,7 +4168,10 @@ xsi:schemaLocation="http://schemas.android.com/service/camera/metadata/ metadata
               <notes>
               The camera device's auto-exposure routine is active and
               prioritizes the application-selected exposure time
-              (android.sensor.exposureTime).
+              (android.sensor.exposureTime). The exposure time may be clamped
+              to the maximum duration allowed by the requested target frame rate in
+              android.control.aeTargetFpsRange to ensure the frame rate does not
+              fall below the requested minimum.
 
               The application has control over android.sensor.exposureTime while
               the application's values for android.sensor.sensitivity and

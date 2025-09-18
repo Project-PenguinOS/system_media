@@ -6338,7 +6338,10 @@ the application's values for <a href="#controls_android.sensor.exposureTime">and
                     <span class="entry_type_enum_name">SENSOR_EXPOSURE_TIME_PRIORITY (v3.11)</span>
                     <span class="entry_type_enum_notes"><p>The camera device's auto-exposure routine is active and
 prioritizes the application-selected exposure time
-(<a href="#controls_android.sensor.exposureTime">android.<wbr/>sensor.<wbr/>exposure<wbr/>Time</a>).<wbr/></p>
+(<a href="#controls_android.sensor.exposureTime">android.<wbr/>sensor.<wbr/>exposure<wbr/>Time</a>).<wbr/> The exposure time may be clamped
+to the maximum duration allowed by the requested target frame rate in
+<a href="#controls_android.control.aeTargetFpsRange">android.<wbr/>control.<wbr/>ae<wbr/>Target<wbr/>Fps<wbr/>Range</a> to ensure the frame rate does not
+fall below the requested minimum.<wbr/></p>
 <p>The application has control over <a href="#controls_android.sensor.exposureTime">android.<wbr/>sensor.<wbr/>exposure<wbr/>Time</a> while
 the application's values for <a href="#controls_android.sensor.sensitivity">android.<wbr/>sensor.<wbr/>sensitivity</a> and
 <a href="#controls_android.sensor.frameDuration">android.<wbr/>sensor.<wbr/>frame<wbr/>Duration</a> are ignored.<wbr/></p></span>
@@ -13091,7 +13094,10 @@ the application's values for <a href="#controls_android.sensor.exposureTime">and
                     <span class="entry_type_enum_name">SENSOR_EXPOSURE_TIME_PRIORITY (v3.11)</span>
                     <span class="entry_type_enum_notes"><p>The camera device's auto-exposure routine is active and
 prioritizes the application-selected exposure time
-(<a href="#controls_android.sensor.exposureTime">android.<wbr/>sensor.<wbr/>exposure<wbr/>Time</a>).<wbr/></p>
+(<a href="#controls_android.sensor.exposureTime">android.<wbr/>sensor.<wbr/>exposure<wbr/>Time</a>).<wbr/> The exposure time may be clamped
+to the maximum duration allowed by the requested target frame rate in
+<a href="#controls_android.control.aeTargetFpsRange">android.<wbr/>control.<wbr/>ae<wbr/>Target<wbr/>Fps<wbr/>Range</a> to ensure the frame rate does not
+fall below the requested minimum.<wbr/></p>
 <p>The application has control over <a href="#controls_android.sensor.exposureTime">android.<wbr/>sensor.<wbr/>exposure<wbr/>Time</a> while
 the application's values for <a href="#controls_android.sensor.sensitivity">android.<wbr/>sensor.<wbr/>sensitivity</a> and
 <a href="#controls_android.sensor.frameDuration">android.<wbr/>sensor.<wbr/>frame<wbr/>Duration</a> are ignored.<wbr/></p></span>
