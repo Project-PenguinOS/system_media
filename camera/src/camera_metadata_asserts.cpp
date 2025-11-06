@@ -638,6 +638,8 @@ static_assert(static_cast<int>(ANDROID_SCALER_AVAILABLE_STREAM_USE_CASES)
         == static_cast<int>(::aidl::android::hardware::camera::metadata::CameraMetadataTag::ANDROID_SCALER_AVAILABLE_STREAM_USE_CASES));
 static_assert(static_cast<int>(ANDROID_SCALER_RAW_CROP_REGION)
         == static_cast<int>(::aidl::android::hardware::camera::metadata::CameraMetadataTag::ANDROID_SCALER_RAW_CROP_REGION));
+static_assert(static_cast<int>(ANDROID_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS)
+        == static_cast<int>(::aidl::android::hardware::camera::metadata::CameraMetadataTag::ANDROID_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS));
 static_assert(static_cast<int>(ANDROID_SENSOR_EXPOSURE_TIME)
         == static_cast<int>(::aidl::android::hardware::camera::metadata::CameraMetadataTag::ANDROID_SENSOR_EXPOSURE_TIME));
 static_assert(static_cast<int>(ANDROID_SENSOR_FRAME_DURATION)

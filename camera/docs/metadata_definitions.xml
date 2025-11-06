@@ -9782,6 +9782,20 @@ xsi:schemaLocation="http://schemas.android.com/service/camera/metadata/ metadata
           </details>
         </entry>
       </dynamic>
+      <static>
+        <entry name="concurrentMultiResolutionFormats" type="int32"
+          visibility="ndk_public" optional="true" container="array"
+          hal_version="3.12">
+          <array>
+            <size>n</size>
+          </array>
+          <description>The MultiResolutionImageReader formats supporting concurrent readers.
+          </description>
+          <details>Among all of the MultiResolutionImageReader formats this camera device supports,
+            this list contains the formats that support concurrent reader outputs.
+          </details>
+        </entry>
+      </static>
     </section>
     <section name="sensor">
       <controls>
