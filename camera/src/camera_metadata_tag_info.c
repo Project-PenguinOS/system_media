@@ -843,6 +843,8 @@ static tag_info_t android_info[ANDROID_INFO_END -
                                         TYPE_INT32  },
     [ ANDROID_INFO_DEVICE_ID - ANDROID_INFO_START ] =
     { "deviceId",                      TYPE_INT32  },
+    [ ANDROID_INFO_DEVICE_TYPE - ANDROID_INFO_START ] =
+    { "deviceType",                    TYPE_BYTE   },
 };
 
 static tag_info_t android_black_level[ANDROID_BLACK_LEVEL_END -
@@ -3796,6 +3798,29 @@ int camera_metadata_enum_snprint(uint32_t tag,
             break;
         }
         case ANDROID_INFO_DEVICE_ID: {
+            break;
+        }
+        case ANDROID_INFO_DEVICE_TYPE: {
+            switch (value) {
+                case ANDROID_INFO_DEVICE_TYPE_BUILT_IN:
+                    msg = "BUILT_IN";
+                    ret = 0;
+                    break;
+                case ANDROID_INFO_DEVICE_TYPE_EXTERNAL:
+                    msg = "EXTERNAL";
+                    ret = 0;
+                    break;
+                case ANDROID_INFO_DEVICE_TYPE_VIRTUAL:
+                    msg = "VIRTUAL";
+                    ret = 0;
+                    break;
+                case ANDROID_INFO_DEVICE_TYPE_UNKNOWN:
+                    msg = "UNKNOWN";
+                    ret = 0;
+                    break;
+                default:
+                    msg = "error: enum value out of range";
+            }
             break;
         }
 
@@ -7510,6 +7535,33 @@ int camera_metadata_enum_value(uint32_t tag,
             break;
         }
         case ANDROID_INFO_DEVICE_ID: {
+            break;
+        }
+        case ANDROID_INFO_DEVICE_TYPE: {
+                enumName = "BUILT_IN";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_INFO_DEVICE_TYPE_BUILT_IN;
+                    ret = 0;
+                    break;
+                }
+                enumName = "EXTERNAL";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_INFO_DEVICE_TYPE_EXTERNAL;
+                    ret = 0;
+                    break;
+                }
+                enumName = "VIRTUAL";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_INFO_DEVICE_TYPE_VIRTUAL;
+                    ret = 0;
+                    break;
+                }
+                enumName = "UNKNOWN";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_INFO_DEVICE_TYPE_UNKNOWN;
+                    ret = 0;
+                    break;
+                }
             break;
         }
 
