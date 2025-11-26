@@ -377,6 +377,8 @@ typedef enum camera_metadata_tag {
     ANDROID_SCALER_CROP_REGION_SET,                   // enum         | fwk_only
     ANDROID_SCALER_AVAILABLE_STREAM_USE_CASES,        // enum[]       | public       | HIDL v3.8
     ANDROID_SCALER_RAW_CROP_REGION,                   // int32[]      | public       | HIDL v3.9
+    ANDROID_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS,
+                                                      // int32[]      | ndk_public   | HIDL v3.12
     ANDROID_SCALER_END,
 
     ANDROID_SENSOR_EXPOSURE_TIME =                    // int64        | public       | HIDL v3.2

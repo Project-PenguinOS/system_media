@@ -594,6 +594,9 @@ static tag_info_t android_scaler[ANDROID_SCALER_END -
     { "availableStreamUseCases",       TYPE_INT64  },
     [ ANDROID_SCALER_RAW_CROP_REGION - ANDROID_SCALER_START ] =
     { "rawCropRegion",                 TYPE_INT32  },
+    [ ANDROID_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS - ANDROID_SCALER_START ] =
+    { "concurrentMultiResolutionFormats",
+                                        TYPE_INT32  },
 };
 
 static tag_info_t android_sensor[ANDROID_SENSOR_END -
@@ -3067,6 +3070,9 @@ int camera_metadata_enum_snprint(uint32_t tag,
             break;
         }
         case ANDROID_SCALER_RAW_CROP_REGION: {
+            break;
+        }
+        case ANDROID_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS: {
             break;
         }
 
@@ -6732,6 +6738,9 @@ int camera_metadata_enum_value(uint32_t tag,
             break;
         }
         case ANDROID_SCALER_RAW_CROP_REGION: {
+            break;
+        }
+        case ANDROID_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS: {
             break;
         }
 

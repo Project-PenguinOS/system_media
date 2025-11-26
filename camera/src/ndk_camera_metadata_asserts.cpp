@@ -593,6 +593,9 @@ static_assert(static_cast<int>(ANDROID_SCALER_AVAILABLE_STREAM_USE_CASES)
 static_assert(static_cast<int>(ANDROID_SCALER_RAW_CROP_REGION)
         == static_cast<int>(ACAMERA_SCALER_RAW_CROP_REGION));
 
+static_assert(static_cast<int>(ANDROID_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS)
+        == static_cast<int>(ACAMERA_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS));
+
 static_assert(static_cast<int>(ANDROID_SENSOR_EXPOSURE_TIME)
         == static_cast<int>(ACAMERA_SENSOR_EXPOSURE_TIME));
 
