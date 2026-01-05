@@ -594,6 +594,9 @@ static tag_info_t android_scaler[ANDROID_SCALER_END -
     { "availableStreamUseCases",       TYPE_INT64  },
     [ ANDROID_SCALER_RAW_CROP_REGION - ANDROID_SCALER_START ] =
     { "rawCropRegion",                 TYPE_INT32  },
+    [ ANDROID_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS - ANDROID_SCALER_START ] =
+    { "concurrentMultiResolutionFormats",
+                                        TYPE_INT32  },
 };
 
 static tag_info_t android_sensor[ANDROID_SENSOR_END -
@@ -843,6 +846,8 @@ static tag_info_t android_info[ANDROID_INFO_END -
                                         TYPE_INT32  },
     [ ANDROID_INFO_DEVICE_ID - ANDROID_INFO_START ] =
     { "deviceId",                      TYPE_INT32  },
+    [ ANDROID_INFO_DEVICE_TYPE - ANDROID_INFO_START ] =
+    { "deviceType",                    TYPE_BYTE   },
 };
 
 static tag_info_t android_black_level[ANDROID_BLACK_LEVEL_END -
@@ -924,6 +929,8 @@ static tag_info_t android_logical_multi_camera[ANDROID_LOGICAL_MULTI_CAMERA_END 
     [ ANDROID_LOGICAL_MULTI_CAMERA_ACTIVE_PHYSICAL_SENSOR_CROP_REGION - ANDROID_LOGICAL_MULTI_CAMERA_START ] =
     { "activePhysicalSensorCropRegion",
                                         TYPE_INT32  },
+    [ ANDROID_LOGICAL_MULTI_CAMERA_ADDITIONAL_RESULTS - ANDROID_LOGICAL_MULTI_CAMERA_START ] =
+    { "additionalResults",             TYPE_BYTE   },
 };
 
 static tag_info_t android_distortion_correction[ANDROID_DISTORTION_CORRECTION_END -
@@ -2673,6 +2680,58 @@ int camera_metadata_enum_snprint(uint32_t tag,
                     msg = "MAX";
                     ret = 0;
                     break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_STANDARD_AGTM:
+                    msg = "STANDARD_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_HLG10_AGTM:
+                    msg = "HLG10_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_HDR10_AGTM:
+                    msg = "HDR10_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_HDR10_PLUS_AGTM:
+                    msg = "HDR10_PLUS_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_10B_HDR_REF_AGTM:
+                    msg = "DOLBY_VISION_10B_HDR_REF_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_10B_HDR_REF_PO_AGTM:
+                    msg = "DOLBY_VISION_10B_HDR_REF_PO_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_10B_HDR_OEM_AGTM:
+                    msg = "DOLBY_VISION_10B_HDR_OEM_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_10B_HDR_OEM_PO_AGTM:
+                    msg = "DOLBY_VISION_10B_HDR_OEM_PO_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_8B_HDR_REF_AGTM:
+                    msg = "DOLBY_VISION_8B_HDR_REF_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_8B_HDR_REF_PO_AGTM:
+                    msg = "DOLBY_VISION_8B_HDR_REF_PO_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_8B_HDR_OEM_AGTM:
+                    msg = "DOLBY_VISION_8B_HDR_OEM_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_8B_HDR_OEM_PO_AGTM:
+                    msg = "DOLBY_VISION_8B_HDR_OEM_PO_AGTM";
+                    ret = 0;
+                    break;
+                case ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_MAX_312:
+                    msg = "MAX_312";
+                    ret = 0;
+                    break;
                 default:
                     msg = "error: enum value out of range";
             }
@@ -3011,6 +3070,9 @@ int camera_metadata_enum_snprint(uint32_t tag,
             break;
         }
         case ANDROID_SCALER_RAW_CROP_REGION: {
+            break;
+        }
+        case ANDROID_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS: {
             break;
         }
 
@@ -3744,6 +3806,29 @@ int camera_metadata_enum_snprint(uint32_t tag,
         case ANDROID_INFO_DEVICE_ID: {
             break;
         }
+        case ANDROID_INFO_DEVICE_TYPE: {
+            switch (value) {
+                case ANDROID_INFO_DEVICE_TYPE_BUILT_IN:
+                    msg = "BUILT_IN";
+                    ret = 0;
+                    break;
+                case ANDROID_INFO_DEVICE_TYPE_EXTERNAL:
+                    msg = "EXTERNAL";
+                    ret = 0;
+                    break;
+                case ANDROID_INFO_DEVICE_TYPE_VIRTUAL:
+                    msg = "VIRTUAL";
+                    ret = 0;
+                    break;
+                case ANDROID_INFO_DEVICE_TYPE_UNKNOWN:
+                    msg = "UNKNOWN";
+                    ret = 0;
+                    break;
+                default:
+                    msg = "error: enum value out of range";
+            }
+            break;
+        }
 
         case ANDROID_BLACK_LEVEL_LOCK: {
             switch (value) {
@@ -3927,6 +4012,21 @@ int camera_metadata_enum_snprint(uint32_t tag,
             break;
         }
         case ANDROID_LOGICAL_MULTI_CAMERA_ACTIVE_PHYSICAL_SENSOR_CROP_REGION: {
+            break;
+        }
+        case ANDROID_LOGICAL_MULTI_CAMERA_ADDITIONAL_RESULTS: {
+            switch (value) {
+                case ANDROID_LOGICAL_MULTI_CAMERA_ADDITIONAL_RESULTS_OFF:
+                    msg = "OFF";
+                    ret = 0;
+                    break;
+                case ANDROID_LOGICAL_MULTI_CAMERA_ADDITIONAL_RESULTS_ON:
+                    msg = "ON";
+                    ret = 0;
+                    break;
+                default:
+                    msg = "error: enum value out of range";
+            }
             break;
         }
 
@@ -6169,6 +6269,84 @@ int camera_metadata_enum_value(uint32_t tag,
                     ret = 0;
                     break;
                 }
+                enumName = "STANDARD_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_STANDARD_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "HLG10_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_HLG10_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "HDR10_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_HDR10_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "HDR10_PLUS_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_HDR10_PLUS_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "DOLBY_VISION_10B_HDR_REF_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_10B_HDR_REF_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "DOLBY_VISION_10B_HDR_REF_PO_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_10B_HDR_REF_PO_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "DOLBY_VISION_10B_HDR_OEM_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_10B_HDR_OEM_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "DOLBY_VISION_10B_HDR_OEM_PO_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_10B_HDR_OEM_PO_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "DOLBY_VISION_8B_HDR_REF_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_8B_HDR_REF_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "DOLBY_VISION_8B_HDR_REF_PO_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_8B_HDR_REF_PO_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "DOLBY_VISION_8B_HDR_OEM_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_8B_HDR_OEM_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "DOLBY_VISION_8B_HDR_OEM_PO_AGTM";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_DOLBY_VISION_8B_HDR_OEM_PO_AGTM;
+                    ret = 0;
+                    break;
+                }
+                enumName = "MAX_312";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_REQUEST_AVAILABLE_DYNAMIC_RANGE_PROFILES_MAP_MAX_312;
+                    ret = 0;
+                    break;
+                }
             break;
         }
         case ANDROID_REQUEST_RECOMMENDED_TEN_BIT_DYNAMIC_RANGE_PROFILE: {
@@ -6560,6 +6738,9 @@ int camera_metadata_enum_value(uint32_t tag,
             break;
         }
         case ANDROID_SCALER_RAW_CROP_REGION: {
+            break;
+        }
+        case ANDROID_SCALER_CONCURRENT_MULTI_RESOLUTION_FORMATS: {
             break;
         }
 
@@ -7365,6 +7546,33 @@ int camera_metadata_enum_value(uint32_t tag,
         case ANDROID_INFO_DEVICE_ID: {
             break;
         }
+        case ANDROID_INFO_DEVICE_TYPE: {
+                enumName = "BUILT_IN";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_INFO_DEVICE_TYPE_BUILT_IN;
+                    ret = 0;
+                    break;
+                }
+                enumName = "EXTERNAL";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_INFO_DEVICE_TYPE_EXTERNAL;
+                    ret = 0;
+                    break;
+                }
+                enumName = "VIRTUAL";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_INFO_DEVICE_TYPE_VIRTUAL;
+                    ret = 0;
+                    break;
+                }
+                enumName = "UNKNOWN";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_INFO_DEVICE_TYPE_UNKNOWN;
+                    ret = 0;
+                    break;
+                }
+            break;
+        }
 
         case ANDROID_BLACK_LEVEL_LOCK: {
                 enumName = "OFF";
@@ -7548,6 +7756,21 @@ int camera_metadata_enum_value(uint32_t tag,
             break;
         }
         case ANDROID_LOGICAL_MULTI_CAMERA_ACTIVE_PHYSICAL_SENSOR_CROP_REGION: {
+            break;
+        }
+        case ANDROID_LOGICAL_MULTI_CAMERA_ADDITIONAL_RESULTS: {
+                enumName = "OFF";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_LOGICAL_MULTI_CAMERA_ADDITIONAL_RESULTS_OFF;
+                    ret = 0;
+                    break;
+                }
+                enumName = "ON";
+                if (strncmp(name, enumName, size) == 0) {
+                    *value = ANDROID_LOGICAL_MULTI_CAMERA_ADDITIONAL_RESULTS_ON;
+                    ret = 0;
+                    break;
+                }
             break;
         }
 
