@@ -119,6 +119,7 @@ typedef enum {
 
 /* Audio attributes */
 #define AUDIO_ATTRIBUTES_TAGS_MAX_SIZE 256
+#define AUDIO_ATTRIBUTES_CODEC_PROVENANCE_MAX_SIZE 64
 typedef struct {
     audio_content_type_t content_type;
     audio_usage_t        usage;
@@ -1286,6 +1287,7 @@ typedef struct playback_track_metadata_v7 {
     struct playback_track_metadata base;
     audio_channel_mask_t channel_mask;
     char tags[AUDIO_ATTRIBUTES_TAGS_MAX_SIZE]; /* UTF8 */
+    char codec_provenance[AUDIO_ATTRIBUTES_CODEC_PROVENANCE_MAX_SIZE]; /* UTF8 */
 } playback_track_metadata_v7_t;
 
 /** Metadata of a record track for an out stream. */
@@ -1300,6 +1302,7 @@ static inline void playback_track_metadata_to_v7(struct playback_track_metadata_
     dst->base = *src;
     dst->channel_mask = AUDIO_CHANNEL_NONE;
     dst->tags[0] = '\0';
+    dst->codec_provenance[0] = '\0';
 }
 
 static inline void playback_track_metadata_from_v7(struct playback_track_metadata *dst,
@@ -1539,6 +1542,8 @@ static inline bool audio_is_input_channel(audio_channel_mask_t channel)
         FALLTHROUGH_INTENDED;
     case AUDIO_CHANNEL_REPRESENTATION_INDEX:
         return bits != 0;
+    case AUDIO_CHANNEL_REPRESENTATION_ACN:
+        return (bits & AUDIO_ACN_CHANNEL_COUNT_MASK) != 0;
     default:
         return false;
     }
@@ -1561,6 +1566,8 @@ static inline CONSTEXPR bool audio_is_output_channel(audio_channel_mask_t channe
         FALLTHROUGH_INTENDED;
     case AUDIO_CHANNEL_REPRESENTATION_INDEX:
         return bits != 0;
+    case AUDIO_CHANNEL_REPRESENTATION_ACN:
+        return (bits & AUDIO_ACN_CHANNEL_COUNT_MASK) != 0;
     default:
         return false;
     }
@@ -1570,6 +1577,10 @@ static inline CONSTEXPR uint32_t audio_channel_count_from_acn_mask(audio_channel
     const audio_channel_representation_t repr = audio_channel_mask_get_representation(mask);
     if (repr != AUDIO_CHANNEL_REPRESENTATION_ACN) return 0;
     return audio_channel_mask_get_bits(mask) & AUDIO_ACN_CHANNEL_COUNT_MASK;
+}
+
+static inline CONSTEXPR bool audio_acn_mask_is_horizontal(audio_channel_mask_t mask) {
+    return (mask & AUDIO_ACN_HORIZONTAL) == AUDIO_ACN_HORIZONTAL;
 }
 
 /* Returns the number of channels from an input channel mask,
