@@ -28,6 +28,20 @@ cc_benchmark {
 }
 
 cc_benchmark {
+    name: "audio_futex_benchmark",
+    host_supported: true,
+
+    srcs: ["audio_futex_benchmark.cpp"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    static_libs: [
+        "libaudioutils",
+    ],
+}
+
+cc_benchmark {
     name: "audio_mutex_benchmark",
 
     srcs: ["audio_mutex_benchmark.cpp"],
