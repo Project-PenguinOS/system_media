@@ -70,7 +70,6 @@ cc_library {
         "mutex.cpp",
         "power.cpp",
         "primitives.c",
-        "property.cpp",
         "roundup.c",
         "sample.c",
         "threads.cpp",
